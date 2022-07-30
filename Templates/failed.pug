@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{title}
+    style
+      include ../static/css/bootstrap/css/bootstrap.min.css
+      include ../static/css/failed.css
+    link(rel="shortcut icon", href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.libratherm.com%2Fwp-content%2Fuploads%2F2019%2F09%2FDatalog-804-side.png&f=1&nofb=1", type="image/x-icon")
+  body
+    header
+      nav
+        ul
+          li.navitems
+            a(href="/") Save Data
+          li.navitems
+            a(href="/SearchData") Search Data
+          li.navitems
+            a(href="/DeleteData") Delete Data
+    main
+        h1 #{failedmsg}
+        h4 #{SubMsg}
+  script
+    include ../static/css/bootstrap/js/bootstrap.bundle.min.js

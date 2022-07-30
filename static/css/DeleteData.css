@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navitems{
+    list-style: none;
+    text-align: center;
+}
+.navitems a{
+    text-decoration: none;
+    text-align: center;
+    color: aliceblue;
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: black;
+    color: aliceblue;
+    padding: 2vh;
+    text-align: center;
+}
+#DeleteForm{
+    margin-top: 10vh;
+    width: 80%;
+    margin-left: 10%;
+}
+#DeleteButton{
+    width: 100%;
+}
+#exampleInputPassword1{
+    margin-bottom: 5vh;
+    margin-top: 2vh;
+    text-align: center;
+}
+#exampleInputEmail1{
+    margin-bottom: 2vh;
+    text-align: center;
+}
+#username{
+    margin-bottom: 2vh;
+    text-align: center;
+}
