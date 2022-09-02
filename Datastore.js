@@ -4,9 +4,10 @@ const path = require('path');
 const filesystem = require('fs');
 const bodyparser = require('body-parser');
 const port = 8000
-
+// custom module 
+const MongoServer = require('./Server/SaveDataToMongoDBatlas')
 // Configuration for Start Server
-app.listen(port, ()=>{`server started at port no ${port}`});
+app.listen(port, ()=>{console.log(`server started at port no ${port}`)})
 
 // File Configurations
 app.set('view engine', 'pug'); // pug configuration
@@ -14,7 +15,9 @@ app.use('/static', express.static('static')); // Static File Configuration
 app.set('views', path.join(__dirname, 'Templates')); // Templates for pug
 
 // middileware for from submission encoding
-app.use(bodyparser.urlencoded({extended:true, parameterLimit:10000000, limit:'5096mb'})); // Control limits
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extended:true, parameterLimit:10000000, limit:'5096mb'})); 
+// Control limits
 
 // EndPoints
 app.get('/', (request, response)=>{
@@ -51,6 +54,8 @@ app.get('/DeleteData', (request, response)=>{
             }
             else if(error){
                 filesystem.writeFileSync(`./Data/Guest/${TitleForData}.txt`, MainData);
+                var user_IP = request.ip
+                MongoServer(TitleForData, MainData, user_IP)
                 var SuccessMassage = `(${TitleForData}) Successfully Saved To Server`
                 var PageTitle = "Successfully Saved Data"
                 var SubSuccessMsg = " Your Data is Saved To our Server with Secure hashing "

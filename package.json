@@ -10,10 +10,10 @@
     "stop": "pm2 stop Datastore.js",
     "nodemon": "npm install nodemon",
     "pm2": "npm install pm2",
-    "pm2startup":"pm2 startup systemd",
-    "pm2save":"pm2 save",
-    "pm2unstartup":"pm2 unstartup systemd",
-    "pm2ls":"pm2 ls"
+    "pm2startup": "pm2 startup systemd",
+    "pm2save": "pm2 save",
+    "pm2unstartup": "pm2 unstartup systemd",
+    "pm2ls": "pm2 ls"
   },
   "keywords": [
     "Store",
@@ -26,6 +26,8 @@
     "body-parser": "^1.20.0",
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
+    "mongoose": "^6.5.4",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
     "pm2": "^5.2.0",
