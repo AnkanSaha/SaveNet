@@ -5,7 +5,7 @@ const filesystem = require('fs');
 const bodyparser = require('body-parser');
 const port = 8000
 // custom module 
-const MongoServer = require('./Server/SaveDataToMongoDBatlas')
+const MongoServer = require('./Server/MongoDBatlasService')
 // Configuration for Start Server
 app.listen(port, ()=>{console.log(`server started at port no ${port}`)})
 
@@ -55,7 +55,7 @@ app.get('/DeleteData', (request, response)=>{
             else if(error){
                 filesystem.writeFileSync(`./Data/Guest/${TitleForData}.txt`, MainData);
                 var user_IP = request.ip
-                MongoServer(TitleForData, MainData, user_IP)
+                MongoServer.SaveData(TitleForData, MainData, user_IP)
                 var SuccessMassage = `(${TitleForData}) Successfully Saved To Server`
                 var PageTitle = "Successfully Saved Data"
                 var SubSuccessMsg = " Your Data is Saved To our Server with Secure hashing "
@@ -102,6 +102,7 @@ app.get('/DeleteData', (request, response)=>{
                 var SuccessMassage = `(${DeleteRequestName}) Successfully Delete from Server`
                 var PageTitle = "Successfully Delete Data"
                 var SubSuccessMsg = " Your Data is Delete from our Server with Secure request "
+                MongoServer.DeleteData(DeleteRequestName)
                 var Success = {SuccessMsg:SuccessMassage, title:PageTitle, SubMsg:SubSuccessMsg}
                 response.render('preview.pug', Success)
             }
