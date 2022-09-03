@@ -81,6 +81,7 @@ app.get('/DeleteData', (request, response)=>{
                 var tempfilename = path.basename(`./Data/Guest/${TitleForReadData}.txt`, '.txt');
                 var PageTitle = "Successfully Fatched Data"
                 var Status = tempfilename
+                MongoServer.SearchData(TitleForReadData)
                 var Success = {title:PageTitle, MainFatchedData:MainData, FatchStatus:Status}
                 response.render('ReadData.pug', Success)
             }
