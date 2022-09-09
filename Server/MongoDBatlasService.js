@@ -1,7 +1,7 @@
 function SaveDataToMongoDBatlas(title, data, Ip){
   var mongoose = require('mongoose');
   var MongoModel = require('./MongoDBmodel')
-  var url = 'mongodb+srv://AuToBot:AuToBot1567@datastore.bu17xwi.mongodb.net/StoreStory?retryWrites=true&w=majority'
+  var url = 'mongodb://localhost:27017/StoreStory'
   mongoose.connect(url).then(()=>{
     console.log('Successfully Connected')
     console.log(title, data)
@@ -30,7 +30,7 @@ function SaveDataToMongoDBatlas(title, data, Ip){
 }
 
 function DeleteDataToMongoDBatlas(TitlefotData){
-  var url = 'mongodb+srv://AuToBot:AuToBot1567@datastore.bu17xwi.mongodb.net/StoreStory?retryWrites=true&w=majority'
+  var url = 'mongodb://localhost:27017/StoreStory'
   var mongoose = require('mongoose');
   var MongoModel = require('../Server/MongoDBmodel')
    mongoose.connect(url).then(()=>{
@@ -54,7 +54,7 @@ function DeleteDataToMongoDBatlas(TitlefotData){
 }
 
 function SearchDataToMongoDBatlas(TitlefotData){
-  var url = 'mongodb+srv://AuToBot:AuToBot1567@datastore.bu17xwi.mongodb.net/StoreStory?retryWrites=true&w=majority'
+  var url = 'mongodb://localhost:27017/StoreStory'
   var mongoose = require('mongoose');
   var MongoDBmodel = require('../Server/MongoDBmodel');
   mongoose.connect(url).then(()=>{
@@ -75,3 +75,5 @@ function SearchDataToMongoDBatlas(TitlefotData){
 module.exports.SaveData = SaveDataToMongoDBatlas
 module.exports.DeleteData = DeleteDataToMongoDBatlas
 module.exports.SearchData = SearchDataToMongoDBatlas
+
+// mongodb+srv://AuToBot:AuToBot1567@datastore.bu17xwi.mongodb.net/StoreStory?retryWrites=true&w=majority
