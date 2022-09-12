@@ -78,12 +78,10 @@ app.get('/DeleteData', (request, response)=>{
                 response.render('failed.pug', failed)
             }
             else{
+                console.loh(MainData)
                 var tempfilename = path.basename(`./Data/Guest/${TitleForReadData}.txt`, '.txt');
                 var PageTitle = "Successfully Fatched Data"
-                var Status = tempfilename
-                MongoServer.SearchData(TitleForReadData)
-                var Success = {title:PageTitle, MainFatchedData:MainData, FatchStatus:Status}
-                response.render('ReadData.pug', Success)
+                MongoServer.SearchData(TitleForReadData, response, tempfilename)
             }
         })
     })
