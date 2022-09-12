@@ -53,7 +53,7 @@ function DeleteDataToMongoDBatlas(TitlefotData){
   })
 }
 
-function SearchDataToMongoDBatlas(TitlefotData){
+function SearchDataToMongoDBatlas(TitlefotData, response, tempfilename){
   var url = 'mongodb://localhost:27017/StoreStory'
   var mongoose = require('mongoose');
   var MongoDBmodel = require('../Server/MongoDBmodel');
@@ -61,7 +61,11 @@ function SearchDataToMongoDBatlas(TitlefotData){
     console.log('Successfully Connected With Server Database')
     MongoDBmodel.find({Title:TitlefotData}).then((result)=>{
       console.log('Sccessfully Data Fached From Server Database')
+      var PageTitle = "Successfully Delete Data"
+      var Status = tempfilename
       console.log(result)
+      var Success = {title:PageTitle, MainFatchedData:result[0].MainStory, FatchStatus:Status}
+      response.render('ReadData.pug', Success)
     }).catch((SearchError)=>{
       console.log('Unable To Search data From Server Database')
       console.log(SearchError)
@@ -76,4 +80,5 @@ module.exports.SaveData = SaveDataToMongoDBatlas
 module.exports.DeleteData = DeleteDataToMongoDBatlas
 module.exports.SearchData = SearchDataToMongoDBatlas
 
+//Cloud MongoDB Atlas Link
 // mongodb+srv://AuToBot:AuToBot1567@datastore.bu17xwi.mongodb.net/StoreStory?retryWrites=true&w=majority
