@@ -53,7 +53,7 @@ function DeleteDataToMongoDBatlas(TitlefotData){
   })
 }
 
-function SearchDataToMongoDBatlas(TitlefotData, response, tempfilename){
+function SearchDataToMongoDBatlas(TitlefotData){
   var url = 'mongodb://localhost:27017/StoreStory'
   var mongoose = require('mongoose');
   var MongoDBmodel = require('../Server/MongoDBmodel');
@@ -62,10 +62,8 @@ function SearchDataToMongoDBatlas(TitlefotData, response, tempfilename){
     MongoDBmodel.find({Title:TitlefotData}).then((result)=>{
       console.log('Sccessfully Data Fached From Server Database')
       var PageTitle = "Successfully Delete Data"
-      var Status = tempfilename
       console.log(result)
-      var Success = {title:PageTitle, MainFatchedData:result[0].MainStory, FatchStatus:Status}
-      response.render('ReadData.pug', Success)
+
     }).catch((SearchError)=>{
       console.log('Unable To Search data From Server Database')
       console.log(SearchError)
