@@ -80,7 +80,7 @@ app.get('/DeleteData', (request, response)=>{
                 response.render('failed.pug', failed)
             }
             else{
-                console.loh(MainData)
+                console.log(MainData)
                 var tempfilename = path.basename(`./Data/Guest/${TitleForReadData}.txt`, '.txt');
                 var PageTitle = "Successfully Fatched Data"
                 var Status = tempfilename
