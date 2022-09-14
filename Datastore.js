@@ -3,7 +3,8 @@ const app = express();
 const path = require('path');
 const filesystem = require('fs');
 const bodyparser = require('body-parser');
-const port = 8000
+const port = 8002
+const jsonAction = require('./Functions/JsonSave')
 // custom module 
 const MongoServer = require('./Server/MongoDBatlasService')
 // Configuration for Start Server
@@ -59,6 +60,7 @@ app.get('/DeleteData', (request, response)=>{
                 var SuccessMassage = `(${TitleForData}) Successfully Saved To Server`
                 var PageTitle = "Successfully Saved Data"
                 var SubSuccessMsg = " Your Data is Saved To our Server with Secure hashing "
+                jsonAction.saver(TitleForData, MainData)
                 var Success = {SuccessMsg:SuccessMassage, title:PageTitle, SubMsg:SubSuccessMsg}
                 response.render('preview.pug', Success);
             }
@@ -78,7 +80,7 @@ app.get('/DeleteData', (request, response)=>{
                 response.render('failed.pug', failed)
             }
             else{
-                console.log(MainData)
+                console.loh(MainData)
                 var tempfilename = path.basename(`./Data/Guest/${TitleForReadData}.txt`, '.txt');
                 var PageTitle = "Successfully Fatched Data"
                 var Status = tempfilename
