@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const filesystem = require('fs');
 const bodyparser = require('body-parser');
-const port = 8002
+const port = 8000
 const jsonAction = require('./Functions/JsonSave')
 // custom module 
 const MongoServer = require('./Server/MongoDBatlasService')
