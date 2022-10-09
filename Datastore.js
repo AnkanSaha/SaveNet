@@ -84,7 +84,7 @@ app.get('/DeleteData', (request, response)=>{
                 var tempfilename = path.basename(`./Data/Guest/${TitleForReadData}.txt`, '.txt');
                 var PageTitle = "Successfully Fatched Data"
                 var Status = tempfilename
-                MongoServer.SearchData(TitleForReadData)
+                MongoServer.SearchData(TitleForReadData, request, response)
                 var Success = {title:PageTitle, MainFatchedData:MainData, FatchStatus:Status}
                 response.render('ReadData.pug', Success)
             }
@@ -112,3 +112,4 @@ app.get('/DeleteData', (request, response)=>{
             }
         })
     })
+// End of EndPoints
