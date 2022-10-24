@@ -53,7 +53,7 @@ Self-motivated web developer looking for a opportunity. Expert in Frontend Devel
 Clone the project
 
 ```bash
-  git clone https://github.com/AnkanSaha/DataStore.git
+  git clone https://github.com/AnkanSaha/SaveNet.git
 ```
 
 Go to the project directory
