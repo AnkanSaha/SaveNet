@@ -1,0 +1,5 @@
+{
+    "ext":".jpg, .jpeg, .png, .gif, .js, .css, .html, .htm, .txt, .xml, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip, .rar, .7z, .mp3, .mp4, .avi, .mkv, .flv, .wmv, .mov, .swf, .wav, .ogg, .webm, .m4a, .m4v, .mpg, .mpeg, .3gp, .3g2, .aac, .flac, .wma, .zip, .rar, .7z, .tar, .gz, .bz2, .cab, .iso, .jar, .apk, .exe, .msi, .bat, .cmd, .vbs, .js, .php, .asp, .aspx, .html, .htm, .css, .xml, .ini, .cfg, .conf, .dll, .sys, .cpl, .scr, .tmp, .temp, .log, .reg, .inf, .cfg, .ini, .db, .sql, .mdb, .ppt, .pptx, .pps, .ppsx, .doc, .docx, .xls, .xlsx, .pdf, .txt, .rtf, .odt, .ods, .odp, .odg, .odf, .odb, .odc, .odm, .odf, .wpd, .wps, .csv, .tsv, .pps, .ppsx, .key, .keynote, .numbers, .pages, .ai, .psd, .svg, .tif, .tiff, .bmp, .dxf, .eps, .ps, .ttf, .xlr, .xls, .xlsx, .cdr, .dwg, .dxf, .gpx, .kml, .kmz, .webp, .3dm, .3ds, .max, .obj, .fbx, .c4d, .dae, .dwf, .dwg, .dxf, .gpx, .kml, .kmz, .stl, .svg, .webp, .3dm, .3ds, .max, .obj,",
+    "watch":"./src/**/*",
+    "reload":"./src/**/*"
+}

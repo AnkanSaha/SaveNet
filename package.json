@@ -1,0 +1,44 @@
+{
+  "name": "datasave",
+  "version": "10.30.2",
+  "description": "Save Data and Files to server securely",
+  "main": "data.js",
+  "scripts": {
+    "buildcss": "tailwindcss build -i ./src/tailwind/base.css -o ./src/css/tailwind.css -c ./tailwind.config.js --minify",
+    "devstart": "nodemon data.js",
+    "deploy": "pm2 start data.js --name datasave",
+    "vitestart": "vite --host",
+    "stop": "pm2 stop data.js --name datasave"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnkanSaha"
+  },
+  "keywords": [
+    "save",
+    "Data",
+    "SaveData",
+    "SecureData",
+    "SaveNet"
+  ],
+  "author": "Ankan Saha",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "mongoose": "^6.6.6",
+    "multer": "^1.4.5-lts.1",
+    "npm": "^8.19.2",
+    "path": "^0.12.7",
+    "pm2": "^5.2.2",
+    "purgecss": "^5.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.1.8"
+  }
+}

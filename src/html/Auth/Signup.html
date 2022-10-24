@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind css CDN for development (Should comment this when ready for deployment) -->
+    <!-- <script src="../tailwind/tailwindCDN.js"></script> -->
+    <!-- tailwind css base file for production -->
+    <link rel="stylesheet" href="../../tailwind/base.css">
+    <!-- tailwind css for production -->
+    <link rel="stylesheet" href="../../css/tailwind.css">
+    <!-- custom css  -->
+    <link rel="stylesheet" href="../../css/Auth/SignupCustom.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../../image/savenet.png" type="image/x-icon">
+    <!-- typed Animation script  -->
+    <script src="../../js/typed.js"></script>
+    <title>Create a account to access all services - SaveNet</title>
+</head>
+<body>
+    <header>
+        <nav class="bg-cyan-600 flex justify-between static">
+            <a href="/" class="mx-9 py-4 hidden lg:block md:block font-extrabold text-white text-2xl font-mono animate-bounce antialiased md:subpixel-antialiased focus:animate-spin hover:animate-spin">SaveNet</a>
+            <ul class="flex justify-end py-4 text-white">
+                <a class="mx-4" href="/">Home</a>
+                <a class="mx-4" href="/login">login</a>
+                <a class="mx-4" href="/contactus">Contact Us</a>
+                <a class="mx-4" href="/aboutus">About us</a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="text-center font-mono font-extrabold text-2xl lg:text-3xl my-16 lg:my-8 text-[#dfdfdf] bg-[#932121] w-6/12 m-auto py-2 rounded-lg">SignUp Now</h1>
+        <div class="w-4/5 bg-[#9a97f3] h-fit m-auto rounded-lg py-5 flex justify-center flex-col px-5 lg:px-28 shadow-black">
+            <input type="text" required placeholder="* Enter Name *" class="text-center rounded-md my-5" id="NewName">
+            <input type="Email" required placeholder="* Enter Email Address *" class="text-center rounded-md mb-5" id="NewEmail">
+            <input type="text" required placeholder="*Enter  Country Name *" class="text-center rounded-md mb-5" id="NewCountry">
+            <input type="text" required placeholder="* Enter Your Password *" class="text-center rounded-md mb-5" id="NewPassword">
+            <input type="password" required placeholder="* Confirm Your Password *" class="text-center rounded-md mb-5" id="NewConfirmPassword">
+            <button class="text-white p-2 bg-cyan-900 w-2/5 m-auto h-fit rounded-lg">Signup Now</button>
+        </div>
+    </main>
+    <footer class="absolute bottom-16 hidden lg:block h-3.5 w-5/12 border-y-black">
+        <p class="text-center font-thin text-white">Made with <span class="text-red-500 font-bold">❤</span> by <a class="text-blue-500 font-bold" href="https://theankan.live">Ankan Saha</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind css CDN for development (Should comment this when ready for deployment) -->
+    <!-- <script src="../tailwind/tailwindCDN.js"></script> -->
+    <!-- tailwind css base file for production -->
+    <link rel="stylesheet" href="../../tailwind/base.css">
+    <!-- tailwind css for production -->
+    <link rel="stylesheet" href="../../css/tailwind.css">
+    <!-- custom css  -->
+    <link rel="stylesheet" href="../../css/Auth/LoginCustom.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../../image/savenet.png" type="image/x-icon">
+    <!-- typed Animation script  -->
+    <script src="../../js/typed.js"></script>
+    <title>Login instantly to access all services -SaveNet</title>
+</head>
+<body>
+    <header>
+        <nav class="bg-cyan-600 flex justify-between static">
+            <a href="/" class="mx-9 py-4 hidden lg:block md:block font-extrabold text-white text-2xl font-mono animate-bounce antialiased md:subpixel-antialiased focus:animate-spin hover:animate-spin">SaveNet</a>
+            <ul class="flex justify-end py-4 text-white">
+                <a class="mx-4" href="/">Home</a>
+                <a class="mx-4" href="/signup">Signup</a>
+                <a class="mx-4" href="/contactus">Contact Us</a>
+                <a class="mx-4" href="/aboutus">About us</a>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="from-neutral-900 text-center my-16 lg:my-8 bg-[#cf350e] w-7/12 m-auto rounded-lg py-4 font-extrabold text-2xl lg:w-5/12 text-white">Login Now</h1>
+        <div class="w-4/5 m-auto bg-cyan-500 flex justify-center flex-col space-y-8 px-5 py-10 rounded-lg lg:px-28 mt-20">
+            <input class="text-center rounded-lg" type="Email" required placeholder="Enter Registered Email" id="RegisteredEmail">
+            <input class="text-center rounded-lg" type="password" required placeholder="Enter account password" id="RegisteredPassword">
+            <button class="bg-green-800 w-6/12 lg:w-4/12 m-auto py-2 font-serif font-semibold text-xl text-white rounded-lg">Login Now</button>
+        </div>
+    </main>
+    <footer class="absolute bottom-16 hidden lg:block h-3.5 w-5/12 border-y-black">
+        <p class="text-center font-thin text-white">Made with <span class="text-red-500 font-bold">❤</span> by <a class="text-blue-500 font-bold" href="https://theankan.live">Ankan Saha</a></p>
+    </footer>
+</body>
+</html>
