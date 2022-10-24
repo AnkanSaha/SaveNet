@@ -15,4 +15,4 @@ app.use(cors(['http://localhost:3000', 'http://localhost:4000', 'https://data.th
 // setup router feature for api routes
 app.use(routing)
 //  starting server
-app.listen(port, ()=>{console.log(`Server is running on port ${port} `+'& current directory is '+__dirname)});
+app.listen(port, '192.168.42.109',()=>{console.log(`Server is running on port ${port} `+'& current directory is '+__dirname)});
