@@ -11,4 +11,7 @@ app.get('/signup', (req, res)=>{
 app.get('/login', (req, res)=>{
     res.status(200).sendFile(`${CurrentDir}html/Auth/login.html`)
 })
+app.get('/signedwelcome', (req, res)=>{
+    res.status(200).sendFile(`${CurrentDir}html/Auth/preview.html`)
+})
 module.exports = app;
