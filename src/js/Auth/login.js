@@ -1,6 +1,13 @@
 document.getElementById('loginbtn').addEventListener('click', ()=>{
+    document.getElementById('loginbtn').classList.add('animate-ping')
     var Email = document.getElementById('RegisteredEmail').value
     var Password = document.getElementById('RegisteredPassword').value
+    //validator
+    if(Email==''||Password==''){
+        alert('Please Fill all Login details 😢')
+        document.getElementById('loginbtn').classList.remove('animate-ping')
+    }
+    else if(Email!='' && Password!=''){
     fetch('/CheckUser', {
         method:"POST",
         headers:{
@@ -9,7 +16,8 @@ document.getElementById('loginbtn').addEventListener('click', ()=>{
         body:JSON.stringify({Email:Email, Password:Password})
     }).then((data)=>{
         data.json().then((response)=>{
-            console.log(response.status[0].Email)
+            document.getElementById('loginbtn').classList.remove('animate-ping')
+            console.log(response.status[0])
             if(response.status == 'User Not Registered'){
                 alert(response.status);
                 window.location.href = '/'
@@ -21,5 +29,5 @@ document.getElementById('loginbtn').addEventListener('click', ()=>{
                 window.location.href='/signedwelcome'
             }
         })
-    })
+    })}
 })

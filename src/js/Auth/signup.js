@@ -1,4 +1,5 @@
 document.getElementById('signupbtn').addEventListener('click', ()=>{
+    document.getElementById('signupbtn').classList.add('animate-ping')
     let Name = document.getElementById('NewName').value
     let Email = document.getElementById('NewEmail').value
     let Country = document.getElementById('NewCountry').value
@@ -8,6 +9,7 @@ document.getElementById('signupbtn').addEventListener('click', ()=>{
     if(Password == ConfirmedPassword){
         if(Name=='' || Email=='' || Country=='' || Password=='' || ConfirmedPassword==''){
             alert('Please Fill up this form to create account 🥺 🙏 🥺')
+            document.getElementById('signupbtn').classList.remove('animate-ping')
         }
         else{
             let RemoteData = {Name:Name, Email:Email, Country:Country, Password:ConfirmedPassword}
@@ -19,6 +21,7 @@ document.getElementById('signupbtn').addEventListener('click', ()=>{
                 body:JSON.stringify(RemoteData)
             }).then((data)=>{
                 data.json().then((response)=>{
+                    document.getElementById('signupbtn').classList.remove('animate-ping')
                     console.log(response)
                     if(response.status == 'User Successfully Registered'){
                         localStorage.setItem('Name', Name);
