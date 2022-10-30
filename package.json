@@ -6,7 +6,7 @@
   "scripts": {
     "buildcss": "tailwindcss build -i ./src/tailwind/base.css -o ./src/css/tailwind.css -c ./tailwind.config.js --minify",
     "devstart": "nodemon data.js",
-    "deploy": "pm2 start data.js --name datasave --watch -i max",
+    "deploy": "pm2 start data.js --name datasave",
     "vitestart": "vite --host",
     "stop": "pm2 stop data.js --name datasave"
   },
