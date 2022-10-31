@@ -1,6 +1,6 @@
-.maintag{
-    background-image: url('../../image/home-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+.maintag {
+  background-image: url("../../image/home-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }

@@ -1,27 +1,30 @@
 // Global variables
 const AuthModel = require("../Database/Auth/MongoAuthModel");
 const mongoose = require("mongoose");
-const MongoDBauthUrl = "mongodb+srv://Ankan157:Ankan1567@resultshowdatabse.q1ops.mongodb.net/Authentication?retryWrites=true&w=majority";
+const MongoDBauthUrl =
+  "mongodb+srv://Ankan157:Ankan1567@resultshowdatabse.q1ops.mongodb.net/Authentication?retryWrites=true&w=majority";
+const Backup = require("../backup/BackupConfig");
 
 //Registration
 function Registration(Name, Email, Country, Password, res) {
   mongoose
-    .connect(
-      MongoDBauthUrl
-    )
+    .connect(MongoDBauthUrl)
     .then(() => {
-      var Registration = new AuthModel.AuthScheema({
+      var tempdata = {
         Name: Name,
         Email: Email,
         Country: Country,
         Password: Password,
-      });
+        Account_Create_Date: new Date(),
+      }
+      var Registration = new AuthModel.AuthScheema(tempdata);
       AuthModel.AuthScheema.find({ Email: Email })
         .then((result) => {
           console.log(result);
           if (result == "") {
             Registration.save()
               .then(() => {
+                Backup.Registration(tempdata);
                 console.log("Credential Saved");
                 res
                   .status(200)
@@ -34,11 +37,9 @@ function Registration(Name, Email, Country, Password, res) {
               });
           } else if (result != "") {
             console.log("User Already Exist");
-            res
-              .status(404)
-              .json({
-                status: "User Already Exist with this details, Please Login 😃",
-              });
+            res.status(404).json({
+              status: "User Already Exist with this details, Please Login 😃",
+            });
             mongoose.connection.close();
           }
         })
@@ -55,9 +56,7 @@ function Registration(Name, Email, Country, Password, res) {
 // login
 function login(Email, Password, res) {
   mongoose
-    .connect(
-      MongoDBauthUrl
-    )
+    .connect(MongoDBauthUrl)
     .then(() => {
       AuthModel.AuthScheema.find({ Email: Email, Password: Password })
         .then((loginresult) => {
@@ -66,6 +65,7 @@ function login(Email, Password, res) {
             res.status(404).json({ status: "User Not Registered" });
             mongoose.connection.close();
           } else if (loginresult != "") {
+            Backup.Login(loginresult);
             res.status(200).json({ status: loginresult });
             mongoose.connection.close();
           }
