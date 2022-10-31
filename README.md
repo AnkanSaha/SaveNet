@@ -1,13 +1,10 @@
-
 # Datastore
 
 Store Data with High Security & access anywhere in world instantly.
 
-
 ## Authors
 
 - [@AnkanSaha](https://www.github.com/AnkanSaha)
-
 
 ## Badges
 
@@ -17,7 +14,6 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
-
 ## Deployment
 
 To deploy this project run
@@ -26,8 +22,8 @@ To deploy this project run
   npm run deploy
 ```
 
-
 ## 🚀 About Me
+
 Self-motivated web developer looking for a opportunity. Expert in Frontend Development and designs. Can interpret and utilize the knowledge
 
 ## Features
@@ -36,17 +32,14 @@ Self-motivated web developer looking for a opportunity. Expert in Frontend Devel
 - Read Data
 - Delete Data
 
-
-
 ## 🔗 Links
+
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ankansaha-)
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/theankansaha)
-
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
 
 ## Run Locally
 
@@ -59,25 +52,27 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd DataStore
+  cd SaveNet
 ```
 
 Install dependencies
 
 ```bash
-  npm install
+  npm install # to install all dependencies
 ```
 
-Start the server
+Start the server (Backend)
 
 ```bash
-  npm run devstart
+  npm run deploy #(For Production)
 ```
 
+```bash
+  npm run devstart # for development
+```
 
 ## Tech Stack
 
-**Client:** HTML5, CSS3, Javascript, Pug
+**Client:** HTML5, CSS3, Javascript, TailwindCSS
 
-**Server:** Node, Express, MongoDB
-
+**Server:** Node, Express, MongoDB Atlas (Cloud) & Mongoose (ODM) & Azure (Cloud) & Cloudflare (CDN)
