@@ -30,10 +30,13 @@
     "express-fileupload": "^1.4.0",
     "mongoose": "^6.6.6",
     "multer": "^1.4.5-lts.1",
+    "node-localstorage": "^2.2.1",
     "npm": "^8.19.2",
     "path": "^0.12.7",
     "pm2": "^5.2.2",
-    "purgecss": "^5.0.0"
+    "purgecss": "^5.0.0",
+    "unique-random": "^3.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",

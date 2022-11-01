@@ -2,8 +2,7 @@
 var Registration = "backup/registration.json";
 var LoginActivity = "backup/LoginActivity.json";
 
-function RegistrationBackup(RegistrationDetails) {
-  var ID = RegistrationDetails.Email;
+function RegistrationBackup(RegistrationDetails, UniqueAccountID) {
   var fs = require("fs");
   fs.chmod(Registration, "775", (err) => {
     if (err) {
@@ -16,12 +15,13 @@ function RegistrationBackup(RegistrationDetails) {
         } else if (data) {
           var json = JSON.parse(data);
           console.log(json);
-          json[`${ID}`] = RegistrationDetails;
+          json[`${UniqueAccountID}`] = RegistrationDetails;
           console.log(json);
           fs.writeFile(Registration, JSON.stringify(json), (err) => {
             if (err) {
               console.log(err);
             } else {
+              console.log(`Saved With ID: ${UniqueAccountID}`);
               console.log("Registration Details Saved locally");
               fs.chmod(Registration, "000", (err) => {
                 if (err) {

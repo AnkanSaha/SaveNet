@@ -57,6 +57,11 @@ document.getElementById("signupbtn").addEventListener("click", () => {
               } else if (response.status == "Internal Server Error") {
                 alert(response.status);
                 window.location.href = "/";
+              } else if (
+                response.status == "Unable To Register, Please Try Again"
+              ) {
+                alert(response.status);
+                window.location.href = "/signup";
               }
             });
           });
