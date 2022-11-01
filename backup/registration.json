@@ -1,1 +1,30 @@
-{"2ffb8e50-e268-45f2-9f01-14ca56a75d34":{"Account_ID":"2ffb8e50-e268-45f2-9f01-14ca56a75d34","Name":"Ankan Saha","Email":"ankansahaofficial@gmail.com","Country":"India","Password":"Ankan@157","Account_Create_Date":"2022-11-01T06:02:32.207Z"},"56c8db2e-71d0-4060-af1a-4fecace2795b":{"Account_ID":"56c8db2e-71d0-4060-af1a-4fecace2795b","Name":"Ankan Saha","Email":"ankansahadaluabari@gmail.com","Country":"India","Password":"Ankan@157","Account_Create_Date":"2022-11-01T06:12:25.057Z"},"456b4c65-b7d5-414e-9870-1efaab7cc32c":{"Account_ID":"456b4c65-b7d5-414e-9870-1efaab7cc32c","Name":"Puja Chakraborty","Email":"puja2142@gmail.com","Country":"India","Password":"Puja@222","Account_Create_Date":"2022-11-01T06:19:53.265Z"}}
+{
+  "177573ae-f48b-4252-a9c6-9c6a852c8bda": {
+    "Account_ID": "177573ae-f48b-4252-a9c6-9c6a852c8bda",
+    "Name": "Ankan Saha",
+    "Email": "ankansahaofficial@gmail.com",
+    "Country": "India",
+    "Password": "Ankan@157",
+    "Account_Create_Date": "2022-11-01T20:17:42.343Z",
+    "Account_Create_Time_Device_Info": {
+      "Device_Name": "Linux x86_64",
+      "Device_Browser": "Mozilla",
+      "Device_Browser_Version": "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+      "Device_Language": "en-GB",
+      "Device_Screen_Resolution": "1366x768",
+      "Device_Screen_Available_Resolution": "1366x735",
+      "Device_Screen_Color_Depth": 24,
+      "Device_Screen_Pixel_Depth": 24,
+      "Device_Screen_Height": 768,
+      "Device_Screen_Available_Height": 735,
+      "Device_Screen_Width": 1366,
+      "Device_Screen_Available_Width": 1366,
+      "Device_Screen_AvailLeft": 0,
+      "Device_Screen_AvailTop": 0,
+      "Device_Screen_AvailHeight": 735,
+      "Device_Screen_AvailWidth": 1366,
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+      "Online": true
+    }
+  }
+}

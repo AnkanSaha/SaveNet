@@ -1,8 +1,9 @@
 var Name = localStorage.getItem("Name");
 var Email = localStorage.getItem("Email");
 var Password = localStorage.getItem("Password");
+var AccountID = localStorage.getItem("AccountID");
 
-if (Name == null || Email == null || Password == null) {
+if (Name == null || Email == null || Password == null || AccountID == null) {
   window.location.href = "/login";
 } else if (Name != null && Email != null && Password != null) {
   alert(`Wellcome ${Name} To Your Secure Account`);
@@ -19,6 +20,7 @@ document.getElementById("logoutbtn").addEventListener("click", () => {
     localStorage.removeItem("Name");
     localStorage.removeItem("Email");
     localStorage.removeItem("Password");
+    localStorage.removeItem("AccountID");
     alert("You need password for next login 😢");
     window.location.href = "/login";
   }

@@ -9,12 +9,16 @@ console.log(Email, Password);
 if (Email == null || Password == null) {
   console.log("Unregistered");
 } else if (Email != null && Password != null) {
+  var ReadyData = {
+    Email: Email,
+    Password: Password,
+  };
   fetch("/CheckUser", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ Email: Email, Password: Password }),
+    body: JSON.stringify(ReadyData),
   }).then((data) => {
     data.json().then((response) => {
       console.log(response.status);

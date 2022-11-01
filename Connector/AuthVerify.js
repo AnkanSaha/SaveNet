@@ -6,7 +6,7 @@ const MongoDBauthUrl =
 const Backup = require("../backup/BackupConfig");
 
 //Registration
-function Registration(Name, Email, Country, Password, res) {
+function Registration(Name, Email, Country, Password, res, Device_info) {
   let { v1: uuidv1, v4: uuidv4 } = require("uuid");
   let UniqueAccountID = uuidv4();
   mongoose
@@ -19,6 +19,7 @@ function Registration(Name, Email, Country, Password, res) {
         Country: Country,
         Password: Password,
         Account_Create_Date: new Date(),
+        Account_Create_Time_Device_Info: Device_info,
       };
       var Registration = new AuthModel.AuthScheema(tempdata);
       AuthModel.AuthScheema.find({ Email: Email })
@@ -39,9 +40,10 @@ function Registration(Name, Email, Country, Password, res) {
                     .then(() => {
                       Backup.Registration(tempdata, UniqueAccountID);
                       console.log("Credential Saved");
-                      res
-                        .status(200)
-                        .json({ status: "User Successfully Registered" });
+                      res.status(200).json({
+                        status: "User Successfully Registered",
+                        AccountID: UniqueAccountID,
+                      });
                       mongoose.connection.close();
                     })
                     .catch((saveerr) => {
@@ -57,6 +59,7 @@ function Registration(Name, Email, Country, Password, res) {
             console.log("User Already Exist");
             res.status(404).json({
               status: "User Already Exist with this details, Please Login 😃",
+              AccountID: result[0].Account_ID,
             });
             mongoose.connection.close();
           }
@@ -78,7 +81,6 @@ function login(Email, Password, res) {
     .then(() => {
       AuthModel.AuthScheema.find({ Email: Email, Password: Password })
         .then((loginresult) => {
-          console.log(loginresult);
           if (loginresult == "") {
             res.status(404).json({ status: "User Not Registered" });
             mongoose.connection.close();

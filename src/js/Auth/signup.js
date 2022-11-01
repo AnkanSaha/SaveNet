@@ -5,6 +5,7 @@ document.getElementById("signupbtn").addEventListener("click", () => {
   let Country = document.getElementById("NewCountry").value;
   let Password = document.getElementById("NewPassword").value;
   let ConfirmedPassword = document.getElementById("NewConfirmPassword").value;
+
   console.log(Password, ConfirmedPassword, Name);
   if (Password == ConfirmedPassword) {
     if (
@@ -28,6 +29,41 @@ document.getElementById("signupbtn").addEventListener("click", () => {
             Email: Email,
             Country: Country,
             Password: ConfirmedPassword,
+            Account_Create_Time_Device_Info: {
+              Device_Name: navigator.platform,
+              Device_OS: navigator.oscpu,
+              Device_Browser: navigator.appCodeName,
+              Device_Browser_Version: navigator.appVersion,
+              Device_Language: navigator.language,
+              Device_Country: navigator.country,
+              Device_Region: navigator.region,
+              Device_City: navigator.city,
+              Device_TimeZone: navigator.timezone,
+              Device_Screen_Resolution: screen.width + "x" + screen.height,
+              Device_Screen_Available_Resolution:
+                screen.availWidth + "x" + screen.availHeight,
+              Device_Screen_Color_Depth: screen.colorDepth,
+              Device_Screen_Available_Color_Depth: screen.availColorDepth,
+              Device_Screen_Pixel_Depth: screen.pixelDepth,
+              Device_Screen_Available_Pixel_Depth: screen.availPixelDepth,
+              Device_Screen_Height: screen.height,
+              Device_Screen_Available_Height: screen.availHeight,
+              Device_Screen_Width: screen.width,
+              Device_Screen_Available_Width: screen.availWidth,
+              Device_Screen_AvailLeft: screen.availLeft,
+              Device_Screen_AvailTop: screen.availTop,
+              Device_Screen_Buffer_Depth: screen.bufferDepth,
+              Device_Screen_DeviceXDPI: screen.deviceXDPI,
+              Device_Screen_DeviceYDPI: screen.deviceYDPI,
+              Device_Screen_LogicalXDPI: screen.logicalXDPI,
+              Device_Screen_LogicalYDPI: screen.logicalYDPI,
+              Device_Screen_UpdateInterval: screen.updateInterval,
+              Device_Screen_AvailHeight: screen.availHeight,
+              Device_Screen_AvailWidth: screen.availWidth,
+              Device_Screen_AvailLeft: screen.availLeft,
+              userAgent: navigator.userAgent,
+              Online: navigator.onLine,
+            },
           };
           fetch("/CreateUser", {
             method: "POST",
@@ -46,13 +82,17 @@ document.getElementById("signupbtn").addEventListener("click", () => {
                 localStorage.setItem("Email", Email);
                 localStorage.setItem("Country", Country);
                 localStorage.setItem("Password", ConfirmedPassword);
+                localStorage.setItem("AccountID", response.AccountID);
                 alert(response.status);
                 window.location.href = "/login";
               } else if (
                 response.status ==
                 "User Already Exist with this details, Please Login 😃"
               ) {
-                alert(response.status);
+                localStorage.setItem("AccountID", response.AccountID);
+                alert(
+                  `${response.status} , Account ID : ${response.AccountID}`
+                );
                 window.location.href = "/login";
               } else if (response.status == "Internal Server Error") {
                 alert(response.status);
@@ -80,6 +120,6 @@ document.getElementById("signupbtn").addEventListener("click", () => {
   }
 });
 
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
-}); // Right Click Truned Off
+// document.addEventListener("contextmenu", (e) => {
+//   e.preventDefault();
+// }); // Right Click Truned Off

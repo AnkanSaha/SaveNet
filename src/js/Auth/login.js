@@ -13,25 +13,30 @@ document.getElementById("loginbtn").addEventListener("click", () => {
         Password.includes("#") ||
         Password.includes("$")
       ) {
+        var ReadyData = {
+          Email: Email,
+          Password: Password,
+        };
         fetch("/CheckUser", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ Email: Email, Password: Password }),
+          body: JSON.stringify(ReadyData),
         }).then((data) => {
           data.json().then((response) => {
             document
               .getElementById("loginbtn")
               .classList.remove("animate-ping");
-            console.log(response.status[0]);
             if (response.status == "User Not Registered") {
+              localStorage.removeItem("AccountID");
               alert(response.status);
               window.location.href = "/signup";
             } else if (response.status != "User Not Registered") {
               localStorage.setItem("Email", response.status[0].Email);
               localStorage.setItem("Password", response.status[0].Password);
               localStorage.setItem("Name", response.status[0].Name);
+              localStorage.setItem("AccountID", response.status[0].Account_ID);
               window.location.href = "/signedwelcome";
             }
           });

@@ -39,7 +39,7 @@ function RegistrationBackup(RegistrationDetails, UniqueAccountID) {
 }
 
 function LoginBackup(LoginDetails) {
-  var CurrentDate = new Date();
+  var CurrentDate = `Login Time is : ${new Date()}`;
   var fs = require("fs");
   fs.chmod(LoginActivity, "775", (err) => {
     if (err) {
@@ -51,9 +51,7 @@ function LoginBackup(LoginDetails) {
           console.log(err);
         } else if (data) {
           var json = JSON.parse(data);
-          console.log(json);
           json[`${CurrentDate}`] = LoginDetails;
-          console.log(json);
           fs.writeFile(LoginActivity, JSON.stringify(json), (err) => {
             if (err) {
               console.log(err);

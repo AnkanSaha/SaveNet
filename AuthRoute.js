@@ -28,8 +28,9 @@ app.post("/CreateUser", (req, res) => {
   var Email = req.body.Email;
   var Country = req.body.Country;
   var Password = req.body.Password;
-  console.log(Name, Email, Country, Password);
-  Authentication.Registration(Name, Email, Country, Password, res);
+  var Device_Info = req.body.Account_Create_Time_Device_Info;
+  console.log(Name, Email, Country, Password, Device_Info);
+  Authentication.Registration(Name, Email, Country, Password, res, Device_Info);
 });
 // login
 app.post("/CheckUser", (req, res) => {
