@@ -1,8 +1,7 @@
 // Global variables
 const AuthModel = require("../Database/Auth/MongoAuthModel");
 const mongoose = require("mongoose");
-const MongoDBauthUrl =
-  "mongodb+srv://Ankan157:Ankan1567@resultshowdatabse.q1ops.mongodb.net/Authentication?retryWrites=true&w=majority";
+const MongoDBauthUrl = require('../Database/MongoDB_Config.js')
 const Backup = require("../backup/BackupConfig");
 
 //Registration
