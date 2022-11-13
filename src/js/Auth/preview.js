@@ -16,6 +16,7 @@ document.getElementById("logoutbtn").addEventListener("click", () => {
   var permission = confirm("Want to password for future login ?");
   if (permission == true) {
     alert("Login details saved for future login 🥰");
+    window.location.href = "/";
   } else if (permission != true || permission == false) {
     localStorage.removeItem("Name");
     localStorage.removeItem("Email");
