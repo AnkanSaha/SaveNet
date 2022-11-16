@@ -28,6 +28,8 @@ document.getElementById("logoutbtn").addEventListener("click", () => {
 
   //getting the data title from the database
 async function FetchTitle(){
+  var Titleloading = `<img src="../../image/arrow-clockwise.svg" class="mt-[7.25rem] lg:mt-[6.25rem] ml-[4rem] lg:ml-[3rem] w-[60.666667%] animate-spin" alt="spinner">`;
+document.getElementById("titles").innerHTML = Titleloading;
   var res = await fetch("/gettitles", {method: "POST",headers: {"Content-Type": "application/json",},body: JSON.stringify({AccountID: AccountID,Email: Email})});
   var data = await res.json();
   console.log(data)
@@ -41,6 +43,8 @@ async function FetchTitle(){
       var id = document.querySelectorAll('.alltitles')
         id.forEach(selected=>{
           selected.addEventListener('click', ()=>{
+            var DescriptionLoading = `<img src="../../image/arrow-clockwise.svg" class="mt-[7.25rem] lg:mt-[0.25rem] ml-[4rem] lg:ml-[7rem] w-[60.666667%] animate-spin" alt="spinner">`
+            document.getElementById("descriptiontemplate").innerHTML = DescriptionLoading;
               var Attname = selected.getAttribute('name')
               fetch("/getdatainfo", {method: "POST",headers: {"Content-Type": "application/json",},body: JSON.stringify({Title: Attname,Email: Email})}).then(res=>res.json()).then(data=>{
                   if(data.Status == "Success"){
@@ -94,6 +98,10 @@ document.getElementById("registerdata").addEventListener("click", () => {
     alert("Please fill the form 🥺");
   }
   else if (Title != "" && Data != "") {
+    document.getElementById('registerdata').innerText = "Saving..."
+    document.getElementById('registerdata').disabled = true;
+    document.getElementById('registerdata').classList.add("cursor-not-allowed")
+    document.getElementById('registerdata').classList.add("opacity-50")
     console.log(Title, Data)
     document.getElementById("TitleData").value = "";
     document.getElementById("descriptionData").value = "";
@@ -102,6 +110,10 @@ document.getElementById("registerdata").addEventListener("click", () => {
     .then(data=>{
       if(data.Status == "Success fully saved to the database"){
         console.log(data)
+        document.getElementById('registerdata').innerText = "Save Now"
+        document.getElementById('registerdata').disabled = false;
+        document.getElementById('registerdata').classList.remove("cursor-not-allowed")
+        document.getElementById('registerdata').classList.remove("opacity-50")
         FetchTitle()
       }
       else if(data.Status == "Title already exist"){
