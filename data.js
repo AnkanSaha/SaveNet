@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const routing = require("./route");
 const Authentication = require("./AuthRoute");
-const helmet = require('helmet');
+const DashRoute = require("./ActionRoute.js");
 //setting up static folder
 app.use(express.static("src"));
 // setting up body parser
@@ -31,12 +31,7 @@ app.use(
 // setup router feature for api routes
 app.use(routing);
 app.use(Authentication);
-// using helmet for security
-app.use(helmet(
-  {
-    contentSecurityPolicy: false
-  }
-));
+app.use(DashRoute);
 //  starting server
 app.listen(port, () => {
   console.log(
