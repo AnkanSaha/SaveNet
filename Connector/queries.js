@@ -8,7 +8,11 @@ async function Query(AccountID, Email, res){
     try {
         await mongoose.connect(MongoDBauthUrl);
         var Data = await DataQuery.Query.find({Account_ID: AccountID, Email: Email});
-        res.status(200).send({Status: "Success", titles: Data});
+        let Title = [];
+        Data.forEach((data)=>{
+            Title.push(data.Title);
+        })
+        res.status(200).send({Status: "Success", titles: Title});
     } catch (error) {
         console.log(error);
         res.status(500).json({Status:"Internal Server Error"});

@@ -33,20 +33,24 @@ document.getElementById("titles").innerHTML = Titleloading;
   var res = await fetch("/gettitles", {method: "POST",headers: {"Content-Type": "application/json",},body: JSON.stringify({AccountID: AccountID,Email: Email})});
   var data = await res.json();
   console.log(data)
+  // remove a element by id in javascript
+  document.getElementById("titles").innerHTML = "";
+  document.getElementById("titles").innerHTML = `<div class="flex flex-col items-center justify-center w-full h-full mt-[7.25rem] lg:mt-[5.25rem]">No Titles Available ...</div>`;
   if(data.Status == "Success"){
     let TitleTemplate ="";
     data.titles.forEach((selected)=>{
-      var Title = selected.Title;
+      var Title = selected;
       TitleTemplate += `<h5 class="alltitles cursor-pointer hover:text-2xl font-semibold" name="${Title}">${Title}</h5><hr>`
       document.getElementById("titles").innerHTML = TitleTemplate;
       // adding event listener to the titles
       var id = document.querySelectorAll('.alltitles')
         id.forEach(selected=>{
           selected.addEventListener('click', ()=>{
-            var DescriptionLoading = `<img src="../../image/arrow-clockwise.svg" class="mt-[7.25rem] lg:mt-[0.25rem] ml-[4rem] lg:ml-[7rem] w-[60.666667%] animate-spin" alt="spinner">`
+            var DescriptionLoading = `<img src="../../image/arrow-clockwise.svg" id="spinner" class="mt-[7.25rem] lg:mt-[0.25rem] ml-[4rem] lg:ml-[7rem] w-[60.666667%] animate-spin" alt="spinner">`
             document.getElementById("descriptiontemplate").innerHTML = DescriptionLoading;
               var Attname = selected.getAttribute('name')
               fetch("/getdatainfo", {method: "POST",headers: {"Content-Type": "application/json",},body: JSON.stringify({Title: Attname,Email: Email})}).then(res=>res.json()).then(data=>{
+                document.getElementById('spinner').remove()
                   if(data.Status == "Success"){
                     var DataTemplate = `<p id="description">${data.Data[0].Description}</p><br><button name="${data.Data[0].Title}" class= "deletebtn text-white bg-red-700 px-6 rounded-lg hover:bg-red-900  mx-4">Delete</button>`
                       document.getElementById("descriptiontemplate").innerHTML = DataTemplate;
@@ -118,9 +122,17 @@ document.getElementById("registerdata").addEventListener("click", () => {
       }
       else if(data.Status == "Title already exist"){
         alert(data.Status)
+        document.getElementById('registerdata').innerText = "Save Now"
+        document.getElementById('registerdata').disabled = false;
+        document.getElementById('registerdata').classList.remove("cursor-not-allowed")
+        document.getElementById('registerdata').classList.remove("opacity-50")
       }
       else if(data.Status == "Internal Server Error"){
         alert(data.Status)
+        document.getElementById('registerdata').innerText = "Save Now"
+        document.getElementById('registerdata').disabled = false;
+        document.getElementById('registerdata').classList.remove("cursor-not-allowed")
+        document.getElementById('registerdata').classList.remove("opacity-50")
       }
     })
   }
