@@ -1,6 +1,6 @@
-const URL = 'mongodb://localhost:27017/SaveNet';
+const URL = 'mongodb+srv://Ankan157:Ankan1567@serverlessdb.q1ops.mongodb.net/SaveNet?retryWrites=true&w=majority';
 
 module.exports = URL;
 
 //remote MongoDB Atlas url
-// "mongodb+srv://Ankan157:Ankan1567@projectcluster.q1ops.mongodb.net/SaveNet?retryWrites=true&w=majority"
+//'mongodb+srv://Ankan157:Ankan1567@serverlessdb.q1ops.mongodb.net/SaveNet?retryWrites=true&w=majority';

@@ -40,5 +40,6 @@ app.post('/deletedata', (req, res)=>{
     var Account_ID = req.body.Account_ID;
     Database.DeleteData(Title, Account_ID, res);
 })
+
 // exporting the module
 module.exports = app
