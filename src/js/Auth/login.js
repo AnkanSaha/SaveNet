@@ -32,7 +32,10 @@ document.getElementById("loginbtn").addEventListener("click", () => {
               localStorage.removeItem("AccountID");
               alert(response.status);
               window.location.href = "/signup";
-            } else if (response.status != "User Not Registered") {
+            }else if(response.status == 'Internal Server Error'){
+              alert(response.status)
+            }
+            else if (response.status != "User Not Registered") {
               localStorage.setItem("Email", response.status[0].Email);
               localStorage.setItem("Password", response.status[0].Password);
               localStorage.setItem("Name", response.status[0].Name);

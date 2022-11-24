@@ -120,6 +120,6 @@ document.getElementById("signupbtn").addEventListener("click", () => {
   }
 });
 
-// document.addEventListener("contextmenu", (e) => {
-//   e.preventDefault();
-// }); // Right Click Truned Off
+document.addEventListener("contextmenu", (e) => {
+   e.preventDefault();
+ }); // Right Click Truned Off

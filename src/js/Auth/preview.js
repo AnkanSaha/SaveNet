@@ -8,6 +8,8 @@ if (Name == null || Email == null || Password == null || AccountID == null) {
 } else if (Name != null && Email != null && Password != null) {
   alert(`Wellcome ${Name} To Your Secure Account`);
   document.getElementById("username").innerText = `Wellcome ${Name}`;
+  document.getElementById('accountID').innerText = `Account ID : ${AccountID}`
+  document.getElementById('email').innerText = `${Email}`
   document.getElementById("titleusername").innerText = `Wellcome ${Name}`;
 }
 

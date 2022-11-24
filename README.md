@@ -19,7 +19,7 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 To deploy this project run
 
 ```bash
-  npm run deploy
+  npm run start
 ```
 
 ## 🚀 About Me
@@ -64,11 +64,11 @@ Install dependencies
 Start the server (Backend)
 
 ```bash
-  npm run deploy #(For Production)
+  npm run start #(For Production)
 ```
 
 ```bash
-  npm run devstart # for development
+  npm run dev # for development
 ```
 
 ## Tech Stack
