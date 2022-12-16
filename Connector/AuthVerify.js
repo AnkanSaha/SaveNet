@@ -16,6 +16,7 @@ async function Registration(Name, Email, Country, Password, res, Device_info) {
       Email: Email,
       Country: Country,
       Password: Password,
+      IsPaid: false,
       Account_Create_Date: new Date(),
       Account_Create_Time_Device_Info: Device_info,
     };

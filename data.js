@@ -33,8 +33,12 @@ app.use(routing);
 app.use(Authentication);
 app.use(DashRoute);
 //  starting server
-app.listen(port, () => {
+app.listen(port,() => {
   console.log(
     `Server is running on port ${port} ` + "& current directory is " + __dirname
   );
 });
+
+// view engine setup
+app.set('view engine', 'pug')
+app.set('views', './src/html')

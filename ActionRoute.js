@@ -41,5 +41,10 @@ app.post('/deletedata', (req, res)=>{
     Database.DeleteData(Title, Account_ID, res);
 })
 
+// sending the 404 page
+app.get('*', (req, res)=>{
+    res.status(404).render('404', {title: '404 : Page Not Found', exit:'Go To Home', routes:'/'});
+})
+
 // exporting the module
 module.exports = app

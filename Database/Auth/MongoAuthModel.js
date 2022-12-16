@@ -4,6 +4,7 @@ let AuthScheemaDef = {
   Name: String,
   Email: String,
   Country: String,
+  IsPaid: Boolean,
   Password: String,
   Account_Create_Date: String,
   Account_Create_Time_Device_Info: Object,
