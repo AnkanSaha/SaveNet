@@ -67,13 +67,21 @@ async function Registration(Name, Email, Country, Password, res, Device_info) {
 }
 
 // login
-async function login(Email, Password, res) {
+async function login(Email, Password,AccountID, res) {
   try {
     await mongoose.connect(MongoDBauthUrl);
-    var loginresult = await AuthModel.AuthScheema.find({
-      Email: Email,
-      Password: Password,
-    });
+    if(AccountID){
+      var loginresult = await AuthModel.AuthScheema.find({
+        Email: Email,
+        Account_ID: AccountID,
+      });
+    }
+    else if(Password){
+      var loginresult = await AuthModel.AuthScheema.find({
+        Email: Email,
+        Password: Password,
+      });
+    }
     if (loginresult == "") {
       res.status(404).json({ status: "User Not Registered" });
       mongoose.connection.close();

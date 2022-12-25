@@ -1,4 +1,21 @@
-// importing require modules
+const os = require('os');
+const cluster = require('cluster');
+const numCPUs = os.cpus().length;
+console.log('numCPUs', numCPUs);
+
+if(cluster.isMaster){
+  let StartWorker = 0;
+  while(StartWorker < numCPUs){
+    cluster.fork();
+    StartWorker++;
+  }
+  cluster.on('exit',()=>{
+    console.log('worker died');
+    cluster.fork();
+  })
+}
+else{
+  // importing require modules
 const express = require("express");
 const app = express();
 const port = 8000;
@@ -42,3 +59,4 @@ app.listen(port,() => {
 // view engine setup
 app.set('view engine', 'pug')
 app.set('views', './src/html')
+}

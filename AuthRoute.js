@@ -36,6 +36,7 @@ app.post("/CreateUser", (req, res) => {
 app.post("/CheckUser", (req, res) => {
   var Email = req.body.Email;
   var Password = req.body.Password;
-  Authentication.login(Email, Password, res);
+  var AccountID = req.body.AccountID
+  Authentication.login(Email, Password, AccountID ,res);
 });
 module.exports = app;
