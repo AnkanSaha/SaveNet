@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind css CDN for development (Should comment this when ready for deployment) -->
+    <!-- <script src="../tailwind/tailwindCDN.js"></script> -->
+    <!-- tailwind css base file for production -->
+    <link rel="stylesheet" href="../../tailwind/base.css">
+    <!-- tailwind css for production -->
+    <link rel="stylesheet" href="../../css/tailwind.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../../image/savenet.png" type="image/x-icon">
+    <title id="titleusername"></title>
+</head>
+<body class="bg-yellow-100">
+    <header>
+        <nav class="bg-cyan-600 flex justify-between static">
+            <a href="/"
+                class="mx-9 py-4 hidden lg:block md:block font-extrabold text-white text-2xl font-mono animate-bounce antialiased md:subpixel-antialiased focus:animate-spin hover:animate-spin">SaveNet</a>
+            <ul class="flex justify-end py-4 text-white">
+                <a class="mx-3 lg:mt-1 lg:mx-4" href="/">Home</a>
+                <button class="mx-2 lg:mx-4 bg-red-600 px-2 py-1 rounded-lg hover:bg-red-700"
+                    id="logoutbtn">Logout</button>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="flex flex-wrap">
+                    <!-- Sidebar for Titles  -->
+        <div class="mx-4 mt-6 lg:w-[23.666667%] bg-white  inline-block w-11/12">
+            <hr>
+            <h2 class="text-center font-mono font-extrabold text-lg">Data Titles</h2>
+            <hr>
+            <div id="titles" class="text-center bg-gray-400 text-white overflow-scroll h-[70vh] rounded-lg">
+            <!-- place a svg here -->
+            </div>
+        </div>
+        <!-- for showing the data -->
+        <div class="bg-white mx-4 mt-6 lg:w-[45.666667%] overflow-scroll h-[75vh]  inline-block w-11/12 px-2 py-3 rounded-lg shadow-2xl" id="descriptiontemplate"></div>
+        <!-- Sidebar for Submit data to server  -->
+        <div class="mx-4 mt-6 lg:absolute lg:right-5 w-11/12 lg:w-[23.666667%] bg-cyan-500 py-3 rounded-lg">
+            <h3 class="text-center font-mono font-extrabold text-lg bg-slate-600 text-white">Enter Title For Description</h3>
+            <br>
+            <input class="text-center w-[80%] ml-9 rounded-lg" id="TitleData" placeholder="Enter Title for Description" required type="text">
+            <br><br>
+            <h3 class="text-center font-mono font-extrabold text-lg bg-slate-600 text-white">Enter Description</h3>
+            <br>
+            <textarea class="text-center w-[80%] ml-9 rounded-lg" placeholder="Enter Full Description" required type="text" id="descriptionData" cols="30" rows="10"></textarea>
+            <br>
+            <br>
+            <button id="registerdata" class="bg-green-700 text-white px-4 py-1 ml-[7.25rem] rounded-xl hover:bg-green-900">Save Now</button>
+        </div>
+        </div>
+    </main>
+    </body>
+<script src="../../js/Dashboard/dashboard.js"></script>
+</html>
