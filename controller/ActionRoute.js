@@ -32,6 +32,18 @@ app.post('/deletedata', (req, res)=>{
     Database.DeleteData(DataID, res);
 })
 
+// update specific data title in the database
+app.put('/updatedata', (req, res)=>{
+    var Name = req.body.Name;
+    var DataID = req.body.DataID;
+    var AccountID = req.body.AccountID;
+    var Email = req.body.Email;
+    var Title = req.body.Title;
+    var Data = req.body.Description;
+    var Date = req.body.Date;
+    Database.UpdateData(DataID, Name, AccountID, Email, Title, Data, Date, res);
+})
+
 // sending the 404 page
 app.get('*', (req, res)=>{
     res.status(404).render('404', {title: '404 : Page Not Found', exit:'Go To Home', routes:'/'});

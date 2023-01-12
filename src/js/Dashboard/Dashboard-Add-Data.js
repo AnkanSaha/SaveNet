@@ -51,6 +51,7 @@ document.getElementById('Add-Data-btn').addEventListener('click', Add_Data_Funct
 
 function Add_Data_Function(){
     document.getElementById('maincontainer').innerHTML = '';
+    document.getElementById('maincontainer').insertAdjacentHTML('afterbegin', Sheleton_loading_animation)
     document.getElementById('maincontainer').innerHTML = main_Design;
     document.getElementById('Add-Data-Submit-Button').addEventListener('click', () => {
         if(navigator.onLine){
@@ -68,8 +69,8 @@ async function Add_Data_Submit_Function(){
     if(Data_Title == '' || Data == ''){
         alert('Please enter the Data Title and Data');
     }
-    else if (Data_Title.length > 20){
-        alert('Data Title should be less than 20 characters');
+    else if (Data_Title.length > 30){
+        alert('Data Title should be less than 30 characters');
     }
     else{
       document.getElementById('maincontainer').innerHTML = Sheleton_loading_animation

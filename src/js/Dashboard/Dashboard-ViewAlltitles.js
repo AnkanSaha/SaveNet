@@ -81,7 +81,7 @@ function showAlltitles() {
                   Data Titles
                 </th>
                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                  Data Titles
+                  Data Actions
                 </th>
               </tr>
             </thead>
@@ -158,6 +158,7 @@ function showAlltitles() {
           .insertAdjacentHTML("beforeend", ViewAllTitlesHtmlTemplate);
       }
     }
+    // adding event listener to the delete button
     document.querySelectorAll(".delete-btn").forEach((selectedbtn) => {
       selectedbtn.addEventListener("click", (event) => {
         var online_status = navigator.onLine;
@@ -170,6 +171,7 @@ function showAlltitles() {
         }
       });
     });
+    // adding event listener to the read button
     document.querySelectorAll(".read-btn").forEach((selectedbtn) => {
       selectedbtn.addEventListener("click", (event) => {
         var online_status = navigator.onLine;
@@ -204,7 +206,7 @@ async function DeleteTitle(ID) {
     alert(`${DeleteResponsedata.Status}`)
   }
 }
-
+// function for reading the specific title data from the database
 async function ReadTitle(DATAID){
   var response = await fetch ("/getdatainfo",{
     method:"POST",
@@ -224,5 +226,4 @@ async function ReadTitle(DATAID){
   })
   document.getElementById("maincontainer").innerHTML = "";
   document.getElementById("maincontainer").innerHTML = Read_data_HTML_Template;
-  
 }
