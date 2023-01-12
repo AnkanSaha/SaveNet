@@ -6,7 +6,7 @@ const DataQuery = require("../Database/Dashboard/dashboardModel.js");
 async function Query(AccountID, res){
     try {
         await mongoose.connect(MongoDBauthUrl);
-        var Data = await DataQuery.Query.find({Account_ID: AccountID});
+        var Data = await DataQuery.Query.find({Account_ID: AccountID})
         let Title = [];
         let DataID = [];
         Data.forEach((data)=>{
@@ -43,6 +43,36 @@ async function SaveData(Name, AccountID, Email, Title, Data, Date, res){
     }
     catch (error) {
         console.log(error);
+        res.status(500).json({Status:"Internal Server Error"});
+    }
+}
+
+// update specific data title in the database
+async function UpdateData(DataID,Name, AccountID, Email, Title, Data, Date, res){
+    try{
+        await mongoose.connect(MongoDBauthUrl);
+        var Finder = await DataQuery.Query.find({_id: DataID});
+        if(Finder.length == 0){
+            res.status(200).json({Status: "Title not found"});
+        }
+        else if(Finder.length != 0){
+            var Complete = await DataQuery.Query.findByIdAndUpdate(DataID, {
+                Name: Name,
+                Email: Email,
+                Account_ID: AccountID,
+                Title: Title,
+                Description: Data,
+                Date: Date
+            })
+            if(Complete.length != 0){
+                res.status(200).json({Status: "Success fully updated"});
+            }
+            else{
+                res.status(200).json({Status: "Failed to update"});
+            }
+        }
+    }
+    catch (error) {
         res.status(500).json({Status:"Internal Server Error"});
     }
 }
@@ -85,6 +115,7 @@ module.exports ={
     Query: Query,
     SaveData: SaveData,
     GetData: GetData,
-    DeleteData: DeleteData
+    DeleteData: DeleteData,
+    UpdateData: UpdateData
 }
 
