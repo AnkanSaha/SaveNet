@@ -30,7 +30,7 @@ let UserName = localStorage.getItem("Name");
 var typed = new Typed(".typed", {
   strings: ["SaveNet", "Save Data", "Read Data", "Update Data", "Remove Data"],
   typeSpeed: 100,
-  backSpeed: 100,
+  backSpeed: 150,
   loop: true,
   cursorChar: "",
 });
@@ -40,9 +40,8 @@ var maintext_type_animation = new Typed(".maintext", {
   strings: [
     `Hey ${UserName}, Welcome to Savenet, the ultimate data saving destination! With our innovative tools and resources, you can easily manage your data usage and stretch your data plan further than ever before. Our user-friendly interface makes it easy to track your data usage, set limits, and access a variety of features to help you save money on your monthly mobile plan. Whether you're a budget-conscious consumer or a busy professional, Savenet has you covered. Start saving on your data today!`,
   ],
-  typeSpeed: 20,
-  backSpeed: 10,
-  loop: true,
+  typeSpeed: 10,
+  loop: false,
   showCursor: false,
 });
 setInterval(() => {
