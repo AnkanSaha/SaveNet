@@ -2,12 +2,28 @@
 const express = require("express");
 const app = express();
 const port = 8000;
+const os = require('os'); // for getting system info
+const cluster = require('cluster'); // for creating multiple process
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const routing = require("./router");
 const Authentication = require("./controller/AuthRoute");
 const DashRoute = require("./controller/ActionRoute.js");
-//setting up static folder
+
+// creating multiple process
+let numCPUs = os.cpus().length;
+if (cluster.isMaster) {
+  while(numCPUs > 0) {
+    cluster.fork();
+    numCPUs--;
+  }
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+    cluster.fork();
+  });
+}
+else{
+  //setting up static folder
 app.use(express.static("src"));
 // setting up body parser
 app.use(
@@ -42,3 +58,4 @@ app.listen(port,() => {
 // view engine setup
 app.set('view engine', 'pug')
 app.set('views', './src/html')
+}
