@@ -69,7 +69,7 @@ app.get('/api/server/getsystemhelth', async (req, res)=>{
         
         // checking the free ram
         if(Main_Free_ram < 1){
-            Main_Free_ram = `${Main_Free_ram} MB`;
+            Main_Free_ram = `${Main_Free_ram} GB`;
             results.FreeRam = Main_Free_ram;
             results.Status = 'Server is busy';
         }
