@@ -2,7 +2,7 @@
   "name": "datasave",
   "version": "10.30.9",
   "description": "Save Data in server securely",
-  "main": "data.js",
+  "main": "source/server/core/data.js",
   "scripts": {
     "buildcss": "tailwindcss build -i ./src/tailwind/base.css -o ./src/css/tailwind.css -c ./tailwind.config.js --minify",
     "dev": "nodemon source/server/core/data.js",
