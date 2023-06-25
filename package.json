@@ -5,10 +5,10 @@
   "main": "data.js",
   "scripts": {
     "buildcss": "tailwindcss build -i ./src/tailwind/base.css -o ./src/css/tailwind.css -c ./tailwind.config.js --minify",
-    "dev": "nodemon data.js",
-    "start": "pm2 start data.js --name datasave --watch",
+    "dev": "nodemon source/server/core/data.js",
+    "start": "pm2 start source/server/core/data.js --name datasave --watch",
     "vitestart": "vite --host",
-    "stop": "pm2 stop data.js --name datasave"
+    "stop": "pm2 stop source/server/core/data.js --name datasave"
   },
   "repository": {
     "type": "git",
@@ -24,17 +24,14 @@
   "author": "Ankan Saha",
   "license": "Apache-2.0",
   "dependencies": {
-    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "flowbite": "^1.6.5",
     "mongoose": "^7.2.3",
-    "multer": "^1.4.5-lts.1",
     "node-localstorage": "^2.2.1",
     "npm": "^9.7.1",
-    "path": "^0.12.7",
-    "pm2": "^5.3.0",
     "pug": "^3.0.2",
     "purgecss": "^5.0.0",
     "unique-random": "^3.0.0",

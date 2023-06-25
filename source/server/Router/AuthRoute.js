@@ -1,18 +1,17 @@
 const express = require("express");
 const app = express.Router();
-const bodyParser = require("body-parser");
 const cors = require("cors");
-const Authentication = require("../Connector/AuthVerify");
+const Authentication = require("../Functions/AuthVerify");
 // setting up body parser
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     extended: true,
     limit: "900mb",
     parameterLimit: 10000000,
   })
 );
 app.use(
-  bodyParser.json({ limit: "900mb", parameterLimit: 10000000, extended: true })
+  express.json({ limit: "900mb", parameterLimit: 10000000, extended: true })
 );
 // setting up cors
 app.use(

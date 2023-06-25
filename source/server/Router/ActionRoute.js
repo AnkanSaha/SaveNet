@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express.Router();
-const Database = require(`../Connector/queries.js`)
+const Database = require(`../Functions/queries`)
 const os = require('os');
-const Contact_us_model = require('../Database/General/ContactUs_model');
-const MongoURL = require('../Database/private/MongoDB_Config');
+const Contact_us_model = require('../Models/General/ContactUs_model.js');
+const GeneralData = require('../core/keys/keys');
 const mongoose = require('mongoose');
 
 // sending data titles to the client
@@ -89,7 +89,7 @@ app.get('/api/server/getsystemhelth', async (req, res)=>{
 // contact us API route
 app.post('/api/contactus', async (req, res)=>{
     const {Name, Email, Message} = req.body;
-    await mongoose.connect(MongoURL)
+    await mongoose.connect(GeneralData.MONGO_URI)
     var NewSet = new Contact_us_model({
         Name: Name,
         Email: Email,
