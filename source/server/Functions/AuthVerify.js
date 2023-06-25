@@ -1,15 +1,15 @@
 // Global variables
-const AuthModel = require("../Database/Auth/MongoAuthModel");
+const AuthModel = require("../Models/Auth/MongoAuthModel");
 const mongoose = require("mongoose");
-const MongoDBauthUrl = require("../Database/private/MongoDB_Config");
-const Backup = require("../backup/BackupConfig");
+const GeneralData = require("../core/keys/keys");
+const Backup = require("../../../backup/BackupConfig");
 
 //Registration
 async function Registration(Name, Email, Country, Password, res, Device_info) {
   let { v1: uuidv1, v4: uuidv4 } = require("uuid");
   let UniqueAccountID = uuidv4();
   try {
-    await mongoose.connect(MongoDBauthUrl);
+    await mongoose.connect(GeneralData.MONGO_URI);
     var tempdata = {
       Account_ID: UniqueAccountID,
       Name: Name,
@@ -70,7 +70,7 @@ async function Registration(Name, Email, Country, Password, res, Device_info) {
 // login
 async function login(Email, Password,AccountID, res) {
   try {
-    await mongoose.connect(MongoDBauthUrl);
+    await mongoose.connect(GeneralData.MONGO_URI);
     if(AccountID){
       var loginresult = await AuthModel.AuthScheema.find({
         Email: Email,
@@ -99,7 +99,7 @@ async function login(Email, Password,AccountID, res) {
 
 // update Account Info
 async function updateAccountInfo(Name, Email, Country, Password, AccountID, Device_info, Account_Create_Date, res) {
-  await mongoose.connect(MongoDBauthUrl);
+  await mongoose.connect(GeneralData.MONGO_URI);
   try {
     var result = await AuthModel.AuthScheema.find({ Account_ID: AccountID });
     if(result.length == 0){

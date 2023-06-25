@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const MongoDBauthUrl = require('../Database/private/MongoDB_Config')
-const DataQuery = require("../Database/Dashboard/dashboardModel.js");
+const GeneralData = require('../core/keys/keys')
+const DataQuery = require("../Models/Dashboard/dashboardModel");
 
 //Sending all the data title to the client
 async function Query(AccountID, res){
     try {
-        await mongoose.connect(MongoDBauthUrl);
+        await mongoose.connect(GeneralData.MONGO_URI);
         var Data = await DataQuery.Query.find({Account_ID: AccountID})
         let Title = [];
         let DataID = [];
@@ -22,7 +22,7 @@ async function Query(AccountID, res){
 // Save the data title to the database
 async function SaveData(Name, AccountID, Email, Title, Data, Date, res){
     try {
-        await mongoose.connect(MongoDBauthUrl);
+        await mongoose.connect(GeneralData.MONGO_URI);
         var Find = await DataQuery.Query.find({Account_ID: AccountID, Title: Title});
             if(Find.length == 0){
                 var FinalData = new DataQuery.Query({
@@ -50,7 +50,7 @@ async function SaveData(Name, AccountID, Email, Title, Data, Date, res){
 // update specific data title in the database
 async function UpdateData(DataID,Name, AccountID, Email, Title, Data, Date, res){
     try{
-        await mongoose.connect(MongoDBauthUrl);
+        await mongoose.connect(GeneralData.MONGO_URI);
         var Finder = await DataQuery.Query.find({_id: DataID});
         if(Finder.length == 0){
             res.status(200).json({Status: "Title not found"});
@@ -79,7 +79,7 @@ async function UpdateData(DataID,Name, AccountID, Email, Title, Data, Date, res)
 
 async function GetData(DataID, res){
     try {
-        await mongoose.connect(MongoDBauthUrl);
+        await mongoose.connect(GeneralData.MONGO_URI);
         var Data = await DataQuery.Query.find({_id: DataID});
         if(Data.length == 0){
             res.status(200).json({Status: "Title not found"});
@@ -95,7 +95,7 @@ async function GetData(DataID, res){
 
 async function DeleteData(ID, res){
     try {
-        await mongoose.connect(MongoDBauthUrl);
+        await mongoose.connect(GeneralData.MONGO_URI);
         var Data = await DataQuery.Query.find({_id:ID})
         if(Data.length == 0){
             res.status(200).json({Status: "Title not found"});
