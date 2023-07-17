@@ -29,7 +29,7 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "flowbite": "^1.7.0",
-    "mongoose": "^7.3.2",
+    "mongoose": "^7.3.4",
     "node-localstorage": "^2.2.1",
     "npm": "^9.8.0",
     "pug": "^3.0.2",
