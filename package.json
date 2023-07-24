@@ -31,7 +31,7 @@
     "flowbite": "^1.7.0",
     "mongoose": "^7.3.4",
     "node-localstorage": "^2.2.1",
-    "npm": "^9.8.0",
+    "npm": "^9.8.1",
     "pug": "^3.0.2",
     "purgecss": "^5.0.0",
     "unique-random": "^3.0.0",
