@@ -1,6 +1,6 @@
 # SaveNet
 
-Store Data with High Security & access anywhere in world instantly.
+Store Data with Security & access anywhere in world instantly.
 
 ## Authors
 
