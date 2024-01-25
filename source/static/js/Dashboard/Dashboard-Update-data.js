@@ -5,84 +5,96 @@ const Main_update_page = `<div id="update-data-finder-container" class=" hidden 
 <button id="data-edit-finder-button" type="button" class="mt-[9.25rem] ml-[0.25rem] lg:ml-[9.25rem] text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">Edit Now</button>
 </div>`
 
+// getting the data title from the database
+async function FetchTitle () {
+  const res = await fetch('/gettitles', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ AccountID, Email })
+  })
+  const data = await res.json()
+  if (data.titles.length == 0) {
+    alert('No titles found')
+  } else {
+    return data
+  }
+}
 
-//getting the data title from the database
-async function FetchTitle() {
-    var res = await fetch("/gettitles", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ AccountID: AccountID, Email: Email }),
-    });
-    var data = await res.json();
-    if (data.titles.length == 0) {
-      alert("No titles found");
-    } else {
-      return data;
-    }
+// Function for getting the all titles & store in the caches for offline use
+async function gettotalTilteLength () {
+  const TitleData = await FetchTitle()
+  if (TitleData.titles.length == 0) {
+    TotalTitle = 0
+  } else if (TitleData.titles.length != 0) {
+    TotalTitle = TitleData.titles.length
+    caches.open('titleDetails').then((cache) => {
+      cache.put('/titlenumber', new Response(TotalTitle))
+      document.getElementById('dashboard-titles-count').innerText =
+        TitleData.titles.length
+    })
+    caches.open('titleDetails').then((cache) => {
+      cache.put('/Alltitles', new Response(JSON.stringify(TitleData.titles)))
+    })
+    caches.open('titleDetails').then((cache) => {
+      cache.put('/AlltitlesID', new Response(JSON.stringify(TitleData.DataID)))
+    })
   }
-  
-  // Function for getting the all titles & store in the caches for offline use
-  async function gettotalTilteLength() {
-    let TitleData = await FetchTitle();
-    if (TitleData.titles.length == 0) {
-      TotalTitle = 0;
-    } else if (TitleData.titles.length != 0) {
-      TotalTitle = TitleData.titles.length;
-      caches.open("titleDetails").then((cache) => {
-        cache.put("/titlenumber", new Response(TotalTitle));
-        document.getElementById('dashboard-titles-count').innerText = TitleData.titles.length;
-      });
-      caches.open("titleDetails").then((cache) => {
-        cache.put("/Alltitles", new Response(JSON.stringify(TitleData.titles)));
-      });
-      caches.open("titleDetails").then((cache) => {
-        cache.put("/AlltitlesID", new Response(JSON.stringify(TitleData.DataID)));
-      });
-    }
-  }
+}
 
 // listener for click on update data button
-document.getElementById('update-Data-btn').addEventListener('click', async ()=>{
-    document.getElementById('maincontainer').innerHTML = '';
-    document.getElementById('maincontainer').insertAdjacentHTML('afterbegin', Sheleton_loading_animation)
-    await caches.delete("titleDetails")
-    await gettotalTilteLength();
-    document.getElementById('maincontainer').insertAdjacentHTML('beforeend', Main_update_page)
-    var response = await caches.open("titleDetails")
-    var data = await response.match("/Alltitles")
-    var dataID = await response.match("/AlltitlesID")
-    var AllTitles = await data.json()
-    var TitlesID = await dataID.json()
-    let select_html_element = "";
+document
+  .getElementById('update-Data-btn')
+  .addEventListener('click', async () => {
+    document.getElementById('maincontainer').innerHTML = ''
+    document
+      .getElementById('maincontainer')
+      .insertAdjacentHTML('afterbegin', Sheleton_loading_animation)
+    await caches.delete('titleDetails')
+    await gettotalTilteLength()
+    document
+      .getElementById('maincontainer')
+      .insertAdjacentHTML('beforeend', Main_update_page)
+    const response = await caches.open('titleDetails')
+    const data = await response.match('/Alltitles')
+    const dataID = await response.match('/AlltitlesID')
+    const AllTitles = await data.json()
+    const TitlesID = await dataID.json()
+    let select_html_element = ''
     AllTitles.forEach((title, index) => {
-        select_html_element+= `<option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" value="${TitlesID[index]}">${title}</option>`
-    });
-    document.getElementById('data-selector-dropdown').innerHTML = select_html_element;
-    document.getElementById('dashboard-skeleton-loading').remove();
-    document.getElementById('update-data-finder-container').classList.remove('hidden')
-    document.getElementById('data-edit-finder-button').addEventListener('click', (event)=>{
-        event.preventDefault();
-        if(navigator.onLine){
-            update_data_get(document.getElementById('data-selector-dropdown').value)
-        }
-        else{
-            alert("You are offline, Please connect to the internet")
-        }
+      select_html_element += `<option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" value="${TitlesID[index]}">${title}</option>`
     })
-})
+    document.getElementById('data-selector-dropdown').innerHTML =
+      select_html_element
+    document.getElementById('dashboard-skeleton-loading').remove()
+    document
+      .getElementById('update-data-finder-container')
+      .classList.remove('hidden')
+    document
+      .getElementById('data-edit-finder-button')
+      .addEventListener('click', (event) => {
+        event.preventDefault()
+        if (navigator.onLine) {
+          update_data_get(
+            document.getElementById('data-selector-dropdown').value
+          )
+        } else {
+          alert('You are offline, Please connect to the internet')
+        }
+      })
+  })
 
-
-async function update_data_get(DataID){
-    document.getElementById('maincontainer').innerHTML = Sheleton_loading_animation;
-    var response = await fetch('/getdatainfo', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({DataID: DataID }),
-    });
-    var data = await response.json();
-    let Edit_data_html_template = "";
-    data.Data.forEach((title, index) => {
-        Edit_data_html_template+= `
+async function update_data_get (DataID) {
+  document.getElementById('maincontainer').innerHTML =
+    Sheleton_loading_animation
+  const response = await fetch('/getdatainfo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ DataID })
+  })
+  const data = await response.json()
+  let Edit_data_html_template = ''
+  data.Data.forEach((title, index) => {
+    Edit_data_html_template += `
         <div class="mx-7 mt-[6.25rem]">
             <div class="mb-6">
         <div class="mb-6">
@@ -122,50 +134,57 @@ async function update_data_get(DataID){
         <span class="sr-only">Save Data</span>
       </button>
       </div>`
-    });
-    document.getElementById('maincontainer').innerHTML = Edit_data_html_template;
-    document.getElementById('Edit-Data-Submit-Button').addEventListener('click', (event)=>{
-        event.preventDefault();
-        if(navigator.onLine){
-            Main_updater(DataID)
-        }
-        else{
-            alert("You are offline, Please connect to the internet")
-        }
+  })
+  document.getElementById('maincontainer').innerHTML = Edit_data_html_template
+  document
+    .getElementById('Edit-Data-Submit-Button')
+    .addEventListener('click', (event) => {
+      event.preventDefault()
+      if (navigator.onLine) {
+        Main_updater(DataID)
+      } else {
+        alert('You are offline, Please connect to the internet')
+      }
     })
 }
 const TodayDate = Date
-async function Main_updater(DataID){
-    console.log(DataID)
-    let AccountID = localStorage.getItem('AccountID');
-    let Name = localStorage.getItem('Name');
-    let Email = localStorage.getItem('Email');
-    let Title = document.getElementById('Edited-Data-Title-Input-Box').value;
-    let Description = document.getElementById('Edited-message').value;
-    document.getElementById('maincontainer').innerHTML = Sheleton_loading_animation;
-    var response = await fetch('/updatedata', {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({AccountID: AccountID, Name: Name, Email: Email, Title: Title, Description: Description, Date: TodayDate, DataID : DataID })
+async function Main_updater (DataID) {
+  console.log(DataID)
+  const AccountID = localStorage.getItem('AccountID')
+  const Name = localStorage.getItem('Name')
+  const Email = localStorage.getItem('Email')
+  const Title = document.getElementById('Edited-Data-Title-Input-Box').value
+  const Description = document.getElementById('Edited-message').value
+  document.getElementById('maincontainer').innerHTML =
+    Sheleton_loading_animation
+  const response = await fetch('/updatedata', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      AccountID,
+      Name,
+      Email,
+      Title,
+      Description,
+      Date: TodayDate,
+      DataID
     })
-    var data = await response.json();
-    console.log(data)
-    if(data.Status == "Success fully updated"){
-        document.getElementById("maincontainer").innerHTML = `<h1 class="mb-4 text-center text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white lg:mt-[11.25rem] mt-[15.25rem]">Data Updated successfully</h1>`;
-            await caches.delete('titleDetails');
-            await gettotalTilteLength();
-    }
-    else if(Status == "Failed to update"){
-        alert("Failed to update")
-    }
-    else if(Status == "Internal Server Error"){
-        alert("Internal Server Error")
-    }
-    else if(Status == "Title not found"){
-        alert("Title not found")
-    }
-    else{
-        alert("Something went wrong")
-        location.reload()
-    }
+  })
+  const data = await response.json()
+  console.log(data)
+  if (data.Status == 'Success fully updated') {
+    document.getElementById('maincontainer').innerHTML =
+      '<h1 class="mb-4 text-center text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white lg:mt-[11.25rem] mt-[15.25rem]">Data Updated successfully</h1>'
+    await caches.delete('titleDetails')
+    await gettotalTilteLength()
+  } else if (Status == 'Failed to update') {
+    alert('Failed to update')
+  } else if (Status == 'Internal Server Error') {
+    alert('Internal Server Error')
+  } else if (Status == 'Title not found') {
+    alert('Title not found')
+  } else {
+    alert('Something went wrong')
+    location.reload()
+  }
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,8 +25,8 @@
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
-    @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@300&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@300&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap");
   </style>
   <body>
     <header>
@@ -53,7 +53,7 @@
             <span
               id="user-online-status"
               class="lg:inline-block hidden ml-2"
-              style="font-family: 'Montserrat', sans-serif"
+              style="font-family: &quot;Montserrat&quot;, sans-serif"
             >
               You're Online</span
             >
@@ -121,7 +121,8 @@
     <main>
       <div
         id="maincontainer"
-        class="w-full lg:w-[81%] h-fit lg:float-right -z-10 lg:mt-[4.5rem] py-3 px-3 mt-[3.25rem]"></div>
+        class="w-full lg:w-[81%] h-fit lg:float-right -z-10 lg:mt-[4.5rem] py-3 px-3 mt-[3.25rem]"
+      ></div>
       <aside
         id="dashboard-controller"
         class="w-64 mt-[3.25rem] lg:mt-[4.25rem] z-50 shadow-2xl lg:h-[80vh] hidden lg:block bg-green-100 rounded-3xl fixed top-5 ml-2 lg:ml-0"
@@ -134,7 +135,7 @@
             <li>
               <button
                 id="dashboard-overview"
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
@@ -153,7 +154,7 @@
             <li>
               <button
                 id="dashboard-view-all-titles-btn"
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
               >
                 <svg
@@ -167,14 +168,12 @@
                     d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
                   ></path>
                 </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap"
-                  >view all data</span
-                >
+                <span class="flex-1 ml-3 whitespace-nowrap">view all data</span>
               </button>
             </li>
             <li>
               <button
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 disabled
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-not-allowed"
               >
@@ -203,7 +202,7 @@
             </li>
             <li>
               <button
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 id="dashboard-userprofile-option"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
               >
@@ -225,7 +224,7 @@
             </li>
             <li>
               <button
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 id="Add-Data-btn"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
@@ -242,14 +241,12 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap"
-                  >Add Data</span
-                >
+                <span class="flex-1 ml-3 whitespace-nowrap">Add Data</span>
               </button>
             </li>
             <li>
               <button
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 id="update-Data-btn"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
@@ -266,14 +263,12 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span class="flex-1 ml-3 whitespace-nowrap"
-                  >Update Data</span
-                >
+                <span class="flex-1 ml-3 whitespace-nowrap">Update Data</span>
               </button>
             </li>
             <li>
               <button
-                style="font-family: 'Montserrat', sans-serif"
+                style="font-family: &quot;Montserrat&quot;, sans-serif"
                 id="dashboard-logout-btn"
                 class="cursor-pointer flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >

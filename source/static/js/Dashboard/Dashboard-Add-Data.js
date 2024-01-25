@@ -42,64 +42,67 @@ placeholder="Enter Data here *"
   <span class="sr-only">Send message</span>
 </button>
 </div>`
-const Account_ID = localStorage.getItem('AccountID');
-const EmailID = localStorage.getItem('Email');
-const UserName = localStorage.getItem('Name');
-var Date = new Date();
+const Account_ID = localStorage.getItem('AccountID')
+const EmailID = localStorage.getItem('Email')
+const UserName = localStorage.getItem('Name')
+var Date = new Date()
 
-document.getElementById('Add-Data-btn').addEventListener('click', Add_Data_Function)
+document
+  .getElementById('Add-Data-btn')
+  .addEventListener('click', Add_Data_Function)
 
-function Add_Data_Function(){
-    document.getElementById('maincontainer').innerHTML = '';
-    document.getElementById('maincontainer').insertAdjacentHTML('afterbegin', Sheleton_loading_animation)
-    document.getElementById('maincontainer').innerHTML = main_Design;
-    document.getElementById('Add-Data-Submit-Button').addEventListener('click', () => {
-        if(navigator.onLine){
-            Add_Data_Submit_Function();
-        }
-        else{
-            alert('You are offline, please connect to the internet and try again');
-        }
+function Add_Data_Function () {
+  document.getElementById('maincontainer').innerHTML = ''
+  document
+    .getElementById('maincontainer')
+    .insertAdjacentHTML('afterbegin', Sheleton_loading_animation)
+  document.getElementById('maincontainer').innerHTML = main_Design
+  document
+    .getElementById('Add-Data-Submit-Button')
+    .addEventListener('click', () => {
+      if (navigator.onLine) {
+        Add_Data_Submit_Function()
+      } else {
+        alert('You are offline, please connect to the internet and try again')
+      }
     })
 }
 
-async function Add_Data_Submit_Function(){
-    let Data_Title = document.getElementById('Add-Data-Title-Input-Box').value;
-    let Data = document.getElementById('Add-Data-Input-Box').value;
-    if(Data_Title == '' || Data == ''){
-        alert('Please enter the Data Title and Data');
+async function Add_Data_Submit_Function () {
+  const Data_Title = document.getElementById('Add-Data-Title-Input-Box').value
+  const Data = document.getElementById('Add-Data-Input-Box').value
+  if (Data_Title == '' || Data == '') {
+    alert('Please enter the Data Title and Data')
+  } else if (Data_Title.length > 100) {
+    alert('Data Title should be less than 100 characters')
+  } else {
+    document.getElementById('maincontainer').innerHTML =
+      Sheleton_loading_animation
+    const res = await fetch('/savedata', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        Name: UserName,
+        AccountID: Account_ID,
+        Email: EmailID,
+        Title: Data_Title,
+        Data,
+        Date
+      })
+    })
+    const response = await res.json()
+    console.log(response)
+    if (response.Status == 'Internal Server Error') {
+      alert('Internal Server Error, Please try again later')
+    } else if (response.Status == 'Title already exist') {
+      alert('Data Title already exists, please try another Data Title')
+    } else if (response.Status == 'Success fully saved to the database') {
+      alert('Data Added Successfully')
+      document.getElementById('maincontainer').innerHTML =
+        '<h1 class="mb-4 text-center text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white lg:mt-[11.25rem] mt-[15.25rem]">Data added successfully</h1>'
+      await caches.delete('titleDetails')
     }
-    else if (Data_Title.length > 100){
-        alert('Data Title should be less than 100 characters');
-    }
-    else{
-      document.getElementById('maincontainer').innerHTML = Sheleton_loading_animation
-        var res = await fetch('/savedata', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                Name: UserName,
-                AccountID: Account_ID,
-                Email: EmailID,
-                Title: Data_Title,
-                Data: Data,
-                Date: Date
-            })
-        });
-        var response = await res.json();
-        console.log(response);
-        if(response.Status == 'Internal Server Error'){
-            alert('Internal Server Error, Please try again later');
-        }
-        else if(response.Status == 'Title already exist'){
-            alert('Data Title already exists, please try another Data Title');
-        }
-        else if(response.Status == 'Success fully saved to the database'){
-            alert('Data Added Successfully');
-            document.getElementById("maincontainer").innerHTML = `<h1 class="mb-4 text-center text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white lg:mt-[11.25rem] mt-[15.25rem]">Data added successfully</h1>`;
-            await caches.delete('titleDetails');
-        }
-    }
+  }
 }
