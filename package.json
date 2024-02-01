@@ -1,14 +1,14 @@
 {
-  "name": "datasave",
+  "name": "SaveNet",
   "version": "10.30.9",
   "description": "Save Data in server securely",
   "main": "source/server/core/data.js",
   "scripts": {
-    "buildcss": "tailwindcss build -i ./src/tailwind/base.css -o ./src/css/tailwind.css -c ./tailwind.config.js --minify",
+    "buildcss": "tailwindcss build -i source/static/tailwind/base.css -o  source/static/css/tailwind.css -c ./tailwind.config.js --minify",
     "dev": "nodemon source/server/core/data.js",
-    "start": "pm2 start source/server/core/data.js --name datasave --watch",
+    "start": "pm2 start source/server/core/data.js --name SaveNet --watch",
     "vitestart": "vite --host",
-    "stop": "pm2 stop source/server/core/data.js --name datasave"
+    "stop": "pm2 stop source/server/core/data.js --name SaveNet"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,8 @@
     "pug": "^3.0.2",
     "purgecss": "^5.0.0",
     "unique-random": "^3.0.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "vite": "^5.0.12"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
