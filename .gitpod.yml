@@ -54,6 +54,11 @@ ports:
     port: 3307
     visibility: public
 
+  - name: Server
+    description: MariaDB Port for Redis
+    port: 8000
+    visibility: public
+
 # Additional Repositories to import from github
 additionalRepositories:
     - url: https://github.com/AnkanSaha/PaisaPay
