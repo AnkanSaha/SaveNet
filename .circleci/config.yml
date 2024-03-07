@@ -1,0 +1,48 @@
+version: 2.1
+
+jobs:  
+  Build_Test:
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run:
+          name: Test Server 
+          command: npm install --force && npm run test
+
+  Push_To_Gitlab:
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run:
+          name: Add Gitlab Remote URL
+          command: git remote add gitlab ${GITLAB_REPO_URL}
+      - run:
+          name: Configure GitLab Credentials
+          command: |
+            git config --global credential.helper store
+            echo "https://oauth2:${GITLAB_PERMANENT_ACCESS_TOKEN}@gitlab.com" > ~/.git-credentials
+            git config --global user.email "${OWNER_EMAIL}"
+            git config --global user.name "${OWNER_NAME}"
+      - run:
+          name: Push to Gitlab
+          command: |
+            git push gitlab
+
+workflows:
+  version: 2
+  Build_Publish:
+    jobs:
+      - Build_Test:
+          name: Build & Test
+          filters:
+            branches:
+              only: main
+      - Push_To_Gitlab:
+          name: Publish to Gitlab
+          requires:
+            - Build & Test
+          filters:
+            branches:
+              only: main
