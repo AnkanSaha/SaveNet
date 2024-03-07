@@ -8,7 +8,8 @@
     "dev": "nodemon source/server/core/data.js",
     "start": "pm2 start source/server/core/data.js --name SaveNet --watch",
     "vitestart": "vite --host",
-    "stop": "pm2 stop source/server/core/data.js --name SaveNet"
+    "stop": "pm2 stop source/server/core/data.js --name SaveNet",
+    "test": "npm run buildcss"
   },
   "repository": {
     "type": "git",
