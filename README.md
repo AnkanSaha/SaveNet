@@ -1,5 +1,7 @@
 # SaveNet
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/AnkanSaha/SaveNet/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AnkanSaha/SaveNet/tree/main)
+
 Store Data with Security & access anywhere in world instantly.
 
 ## Authors
