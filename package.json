@@ -28,7 +28,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
-    "express-fileupload": "^1.4.0",
+    "express-fileupload": "^1.5.0",
     "flowbite": "^1.7.0",
     "mongoose": "^7.5.0",
     "node-localstorage": "^2.2.1",
